@@ -88,4 +88,12 @@
     </plugins>
   </reporting>
 
+
+<distributionManagement>
+		<repository>
+			<id>myrepo</id>
+			<name>myrepo</name>
+			<url>http://localhost:8081/nexus/content/repositories/myrepo/</url>
+		</repository>
+	</distributionManagement>
 </project>
