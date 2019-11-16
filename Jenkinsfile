@@ -3,7 +3,7 @@ node('') {
 		checkout scm
 	}
 	stage('Build & Unit test'){
-		withMaven(maven:'maven'){
+		Maven(maven:'maven'){
 			bat 'mvn clean verify -DskipITs=true';}
 		junit '**/target/surefire-reports/TEST-*.xml'
 		archive 'target/*.jar'
