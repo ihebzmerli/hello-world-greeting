@@ -5,7 +5,7 @@
   <groupId>employee</groupId>
   <artifactId>hello</artifactId>
   <packaging>war</packaging>
-  <version>0.0.1</version>
+  <version>0.0.1-SNAPSHOT</version>
   <name>Hello Maven Webapp</name>
   <url>http://maven.apache.org</url>
   
@@ -90,10 +90,10 @@
 
 
 <distributionManagement>
-		<repository>
-			<id>myrepo</id>
-			<name>myrepo</name>
-			<url>http://localhost:8081/nexus/content/repositories/myrepo/</url>
-		</repository>
+		<snapshotRepository>
+			<id>nex</id>
+			<name>nex</name>
+			<url>http://localhost:8081/nexus/content/repositories/nex/</url>
+		</snapshotRepository>
 	</distributionManagement>
 </project>
