@@ -8,6 +8,11 @@ node('') {
 		junit '**/target/surefire-reports/TEST-*.xml'
 		archive 'target/*.jar'
 	}
+	stage('Static Code Analysis'){
+		withMaven(maven:'maven'){
+			bat 'mvn clean verify sonar:sonar -Dsonar.projectName=exemple-sonar -Dsonar.projectKey=exemple-sonar -Dsonar.projectVersion=$BUILD_NUMBER';
+		}
+	}
 	
 	stage ('Integration Test'){
 		withMaven(maven:'maven'){
