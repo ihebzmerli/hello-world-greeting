@@ -16,16 +16,8 @@ node('') {
 		archive 'target/*.jar'
 	}
 	stage ('Publish'){
-		def server = Artifactory.server 'nex'
-		def uploadSpec = """{
-			"files": [
-				{
-					"pattern": "target/hello-0.0.1.war",
-					"target": "nex/${BUILD_NUMBER}/",
-					"props": "Integration-Tested=Yes;Performance-Tested=No"
-				}
-			]
-		}"""
-		server.upload(uploadSpec)
+		withMaven(maven:'maven'){
+			bat 'mvn deploy';}
+		
 	}
 }
