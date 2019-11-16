@@ -8,11 +8,7 @@ node('') {
 		junit '**/target/surefire-reports/TEST-*.xml'
 		archive 'target/*.jar'
 	}
-	stage('Static Code Analysis'){
-		withMaven(maven:'mm'){
-			bat 'mvn clean verify sonar:sonar -Dsonar.projectName=exemple-sonar -Dsonar.projectKey=exemple-sonar -Dsonar.projectVersion=$BUILD_NUMBER';
-		}
-	}
+	
 	stage ('Integration Test'){
 		withMaven(maven:'mm'){
 			bat 'mvn clean verify -Dsurefire.skip=true';}
@@ -20,12 +16,12 @@ node('') {
 		archive 'target/*.jar'
 	}
 	stage ('Publish'){
-		def server = Artifactory.server 'arti'
+		def server = Artifactory.server 'nex'
 		def uploadSpec = """{
 			"files": [
 				{
 					"pattern": "target/hello-0.0.1.war",
-					"target": "exemple/${BUILD_NUMBER}/",
+					"target": "nex/${BUILD_NUMBER}/",
 					"props": "Integration-Tested=Yes;Performance-Tested=No"
 				}
 			]
